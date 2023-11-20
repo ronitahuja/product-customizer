@@ -7,10 +7,11 @@ const app=express();
 const mongoose=require('mongoose')
 const orders=require('./models/database');
 
+const job= require('./cron')
+job.start()
+
 app.use(express.json());
 app.use(cors());
-
-
 
 app.post('/',async(req,res)=>{
   let email=req.body.email

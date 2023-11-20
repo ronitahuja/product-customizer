@@ -37,17 +37,17 @@ function Home(args) {
   const [soul, setsoul] = useState("#ffffff");
 
   const [modal, setModal] = useState(false);
-  const[email,setMail]=useState("");
-  const[phone,setPhone]=useState("");
+  const [email, setMail] = useState("");
+  const [phone, setPhone] = useState("");
   const toggle = () => setModal(!modal);
 
-  function handleSubmit(){
-    if(email=="" || phone==""){
+  function handleSubmit() {
+    if (email == "" || phone == "") {
       alert("Incorrect details")
       return;
     }
 
-    axios.post('http://localhost:8000/', {
+    axios.post('https://product-customizer-backend.onrender.com/', {
       laces: laces,
       mesh: mesh,
       caps: caps,
@@ -58,13 +58,13 @@ function Home(args) {
       patch: patch,
       email: email,
       phone: phone
-    }).then(()=>{
+    }).then(() => {
       toggle()
     }).catch((err) => {
       console.log(err)
     })
     alert("Your order has been placed")
-}
+  }
 
   const colors = {
     laces: laces,
@@ -157,48 +157,33 @@ function Home(args) {
               <label htmlFor="patch">Patch</label>
             </motion.div>
           </div>
-          {/* <motion.button type="submit" onClick={() => {
-            axios.post('http://localhost:8000/', {
-              laces: laces,
-              mesh: mesh,
-              caps: caps,
-              inner: inner,
-              soul: soul,
-              stripes: strips,
-              band: band,
-              patch: patch,
-            }).then(()=>{
-              setForm(true);
-            }).catch((err) => {
-              console.log(err)
-            })
-          }} variants={variants} whileHover={"end"}>Buy Now</motion.button>  */}
-      <Button color="danger" onClick={toggle} >
-        Buy Now
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} {...args}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-        <input type="email" required placeholder="Enter your email"
-        style={{width:"30vw"}}
-                 onChange={(event) => {
+
+          <Button color="danger" onClick={toggle} >
+            Buy Now
+          </Button>
+          <Modal isOpen={modal} toggle={toggle} {...args}>
+            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+            <ModalBody>
+              <input type="email" required placeholder="Enter your email"
+                style={{ width: "30vw" }}
+                onChange={(event) => {
                   setMail(event.target.value);
                 }} />
-        <input type="text" required placeholder="Enter your phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number"
-        style={{width:"30vw",margin:"5px 0px 0px 0px"}}
-                 onChange={(event) => {
+              <input type="text" required placeholder="Enter your phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number"
+                style={{ width: "30vw", margin: "5px 0px 0px 0px" }}
+                onChange={(event) => {
                   setPhone(event.target.value);
                 }} />
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>
-            Confirm
-          </Button>
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={handleSubmit}>
+                Confirm
+              </Button>
+              <Button color="secondary" onClick={toggle}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
         </div>
       </div>
     </>
