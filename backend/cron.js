@@ -1,7 +1,7 @@
 const cron =require('cron')
 const https =require('https')
 
-const backend='https://product-customizer-backend.onrender.com'
+const backend='https://product-customizer-backend.onrender.com/api'
 const job=new cron.CronJob('*/14 * * * *',function(){
     console.log(`Restarting server`);
 
