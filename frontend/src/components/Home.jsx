@@ -43,8 +43,7 @@ function Home(args) {
 
   function handleSubmit() {
     const email_regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    const phone_regex=/^\d+$/
-    if (email == "" || phone == "" || email_regex.test(email) || phone.length()<10 || phone_regex.test(phone)) {
+    if (email == "" || phone == "" || !email_regex.test(email)) {
       alert("Incorrect details")
       return;
     }
@@ -164,7 +163,7 @@ function Home(args) {
             Buy Now
           </Button>
           <Modal isOpen={modal} toggle={toggle} {...args}>
-            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+            <ModalHeader toggle={toggle}>Please enter your contact details</ModalHeader>
             <ModalBody>
               <input type="email" required placeholder="Enter your email"
                 style={{ width: "30vw" }}
