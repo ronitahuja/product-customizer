@@ -42,7 +42,9 @@ function Home(args) {
   const toggle = () => setModal(!modal);
 
   function handleSubmit() {
-    if (email == "" || phone == "") {
+    const email_regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const phone_regex=/^\d+$/
+    if (email == "" || phone == "" || email_regex.test(email) || phone.length()<10 || phone_regex.test(phone)) {
       alert("Incorrect details")
       return;
     }
